@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -17,13 +18,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.expensetracker.ui.theme.ExpenseTrackerTheme
+import com.example.expensetracker.presentation.Screens
+import com.example.expensetracker.presentation.theme.ExpenseTrackerTheme
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -58,9 +62,6 @@ fun MainContent() {
             composable(Screens.TransactionHistoryScreen.route) {
 
             }
-            composable(Screens.ReportScreen.route) {
-
-            }
             composable(Screens.NewTransactionScreen.route) {
 
             }
@@ -71,9 +72,8 @@ fun MainContent() {
 @Composable
 fun BottomBar(navController: NavController) {
     val screens = listOf(
-        Screens.TransactionHistoryScreen,
         Screens.HomeScreen,
-        Screens.ReportScreen,
+        Screens.TransactionHistoryScreen
     )
 
     val backStackEntry = navController.currentBackStackEntryAsState()
@@ -97,7 +97,8 @@ fun BottomBar(navController: NavController) {
                         Icon(
                             painter = painterResource(id = screen.icon),
                             contentDescription = null,
-                            tint = if (selected) MaterialTheme.colorScheme.primary else LocalContentColor.current
+                            tint = if (selected) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                            modifier = Modifier.size(20.dp)
                         )
                     },
                     label = {
@@ -106,7 +107,7 @@ fun BottomBar(navController: NavController) {
                             color = if (selected) MaterialTheme.colorScheme.primary else LocalContentColor.current
                         )
                     },
-                    colors = NavigationBarItemDefaults.colors(indicatorColor = MaterialTheme.colorScheme.primary)
+                    colors = NavigationBarItemDefaults.colors(indicatorColor = Color.Transparent)
                 )
             }
 

@@ -1,5 +1,6 @@
-package com.example.expensetracker
+package com.example.expensetracker.presentation
 
+import com.example.expensetracker.R
 
 sealed class Screens(
     val title: String,
@@ -13,15 +14,9 @@ sealed class Screens(
     )
 
     data object TransactionHistoryScreen : Screens(
-        title = "Transaction History",
+        title = "Transactions",
         icon = R.drawable.ic_transaction,
         route = "transaction_history_screen"
-    )
-
-    data object ReportScreen : Screens(
-        title = "Daily Report",
-        icon = R.drawable.ic_report,
-        route = "report_screen"
     )
 
     data object NewTransactionScreen : Screens(
@@ -29,5 +24,4 @@ sealed class Screens(
         icon = 0,
         route = "new_transaction_screen"
     )
-
 }
