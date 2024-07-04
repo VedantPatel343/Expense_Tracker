@@ -1,27 +1,19 @@
 package com.example.expensetracker.presentation
 
-import com.example.expensetracker.R
+import com.example.expensetracker.util.Constant
+import com.example.expensetracker.util.Constant.NanArgs.Companion.NAV_TRANSACTION_ID
+import com.example.expensetracker.util.Constant.NanArgs.Companion.NAV_TRANSACTION_TYPE
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-sealed class Screens(
-    val title: String,
-    val icon: Int,
-    val route: String
-) {
-    data object HomeScreen : Screens(
-        title = "Home",
-        icon = R.drawable.ic_home,
-        route = "home_screen"
-    )
+@Serializable
+data object Home
 
-    data object TransactionHistoryScreen : Screens(
-        title = "Transactions",
-        icon = R.drawable.ic_transaction,
-        route = "transaction_history_screen"
-    )
+@Serializable
+data object TransactionHistory
 
-    data object NewTransactionScreen : Screens(
-        title = "New Transaction",
-        icon = 0,
-        route = "new_transaction_screen"
-    )
-}
+@Serializable
+data class AETransaction(
+    @SerialName(NAV_TRANSACTION_ID) val transactionId: Long = -1L,
+    @SerialName(NAV_TRANSACTION_TYPE) val transactionType: String = Constant.TransactionType.INCOME
+)
