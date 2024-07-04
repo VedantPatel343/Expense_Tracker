@@ -7,6 +7,8 @@ class TransactionRepo(private val dao: TransactionDAO) {
 
     fun getTransactions() = dao.getTransactions()
 
+    fun getTransactionById(id: Long) = dao.getTransactionById(id)
+
     suspend fun upsertTransaction(transaction: Transaction) = dao.upsertTransaction(transaction)
 
     suspend fun deleteTransaction(transaction: Transaction) = dao.deleteTransaction(transaction)

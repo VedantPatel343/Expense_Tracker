@@ -13,6 +13,9 @@ interface TransactionDAO {
     @Query("SELECT * FROM `Transaction`")
     fun getTransactions(): Flow<List<Transaction>>
 
+    @Query("SELECT * FROM `Transaction` WHERE id = :id")
+    fun getTransactionById(id: Long): Transaction
+
     @androidx.room.Transaction
     @Upsert
     suspend fun upsertTransaction(transaction: Transaction)
